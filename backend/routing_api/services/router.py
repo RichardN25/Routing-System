@@ -202,7 +202,10 @@ def _extract_route_name(raw: Dict[str, Any]) -> str:
             return ref
 
     if refs:
-        return refs[0]
+        first_ref = refs[0]
+        if first_ref.isdigit():
+            return f"Route {first_ref}"
+        return first_ref
     if names:
         return names[0]
     return ""

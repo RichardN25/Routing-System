@@ -228,6 +228,7 @@ def format_corridor_heatmap(
         # Slice 49 hours (hours 0..48 inclusive)
         hourly_wind: List[float] = []
         hourly_precip: List[float] = []
+        hourly_snow: List[float] = []
 
         for h in range(49):
             curr_idx = start_idx + h
@@ -241,11 +242,13 @@ def format_corridor_heatmap(
 
             hourly_wind.append(round(w, 1))
             hourly_precip.append(round(r + s, 2))
+            hourly_snow.append(round(s, 2))
 
         heatmap_cells.append({
             "coordinates": [pt[0], pt[1]],
             "hourly_wind_mph": hourly_wind,
             "hourly_precip_in": hourly_precip,
+            "hourly_snow_in": hourly_snow,
         })
 
     return heatmap_cells
